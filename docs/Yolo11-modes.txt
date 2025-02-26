@@ -1,0 +1,86 @@
+# yolo11 Model Types Guide
+
+YOLOv12 comes in several model sizes, each with different characteristics in terms of speed, accuracy, and resource requirements. Below is a detailed comparison of the available models:
+
+## YOLOv12n (Nano)
+- **Size**: Smallest model (~1-2MB)
+- **Speed**: Fastest inference (>100 FPS on modern hardware)
+- **Accuracy**: Lowest accuracy among the variants
+- **Best for**: 
+  - Real-time applications on resource-constrained devices
+  - Mobile applications
+  - Embedded systems
+  - Edge devices with limited processing power
+  - Applications where speed is more important than accuracy
+
+## YOLOv12s (Small)
+- **Size**: Small model (~5-7MB)
+- **Speed**: Very fast inference
+- **Accuracy**: Better than Nano, but still optimized for speed
+- **Best for**:
+  - Resource-constrained environments that need better accuracy
+  - Mobile applications requiring better detection quality
+  - IoT devices with moderate processing capabilities
+  - Real-time applications with moderate accuracy requirements
+
+## YOLOv12m (Medium)
+- **Size**: Medium model (~15-20MB)
+- **Speed**: Good balance of speed and accuracy
+- **Accuracy**: Solid general-purpose detection
+- **Best for**:
+  - General purpose object detection
+  - Applications where balanced performance is needed
+  - Desktop applications
+  - Systems with moderate GPU capabilities
+  - Most common use cases
+
+## YOLOv12l (Large)
+- **Size**: Large model (~30-40MB)
+- **Speed**: Slower than medium, but still reasonable
+- **Accuracy**: High accuracy for complex scenes
+- **Best for**:
+  - Applications where accuracy is more important than speed
+  - Complex scenes with many objects
+  - Research and development
+  - Systems with good GPU capabilities
+  - Applications that can tolerate slightly slower inference
+
+## YOLOv12x (Extra Large)
+- **Size**: Largest model (~70-100MB)
+- **Speed**: Slowest inference among the variants
+- **Accuracy**: Highest detection accuracy
+- **Best for**:
+  - Offline processing where accuracy is critical
+  - Applications with no real-time requirements
+  - Complex detection scenarios
+  - Research and benchmarking
+  - Systems with powerful GPUs
+  - When you need the absolute best detection performance
+
+## Performance Comparison (Approximate)
+| Model | Size | Speed | mAP (Accuracy) | Memory Usage | Best Use Case |
+|-------|------|-------|---------------|--------------|---------------|
+| YOLOv12n | Smallest | Fastest | Lowest | Lowest | Edge devices, real-time |
+| YOLOv12s | Small | Very Fast | Low-Medium | Low | Mobile, IoT |
+| YOLOv12m | Medium | Balanced | Medium | Medium | General purpose |
+| YOLOv12l | Large | Moderate | High | High | Accuracy-focused |
+| YOLOv12x | Largest | Slowest | Highest | Highest | Offline processing |
+
+## How to Choose
+1. **Limited hardware**: Choose YOLOv12n or YOLOv12s
+2. **Balanced needs**: Choose YOLOv12m
+3. **Accuracy is critical**: Choose YOLOv12l or YOLOv12x
+4. **Real-time processing**: Choose YOLOv12n, YOLOv12s, or YOLOv12m
+5. **Offline processing**: Choose YOLOv12l or YOLOv12x
+
+Supported Tasks and Modes
+yolo11 supports a variety of computer vision tasks. 
+The table below shows task support and the operational modes
+(Inference, Validation, Training, and Export) enabled for each:
+
+Model           Type		
+yolo11l	        Detection
+yolo11l-seg	    Segmentation
+yolo11l-pose	Pose
+yolo11l-cls	    Classification
+yolo11l-obb	    OBB

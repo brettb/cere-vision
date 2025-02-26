@@ -1,0 +1,172 @@
+CERE VISION - Command Line Interface Examples
+===========================================
+
+This document provides detailed examples of how to use the command-line interfaces for the various scripts in the Cere Vision toolkit.
+
+------------------------------------------
+1. PHOTO PROCESSING (yolo11-photo.py)
+------------------------------------------
+
+Basic usage:
+```python
+python yolo11-photo.py
+```
+
+The photo processing script currently uses parameters defined within the script itself. You can modify these parameters in the script:
+
+- Change the model:
+  model_name = "yolo11m.pt"  # Options: yolo11n.pt, yolo11s.pt, yolo11m.pt, yolo11l.pt, yolo11x.pt
+
+- Modify confidence threshold:
+  conf_threshold = 0.5  # Increase for higher confidence detections
+
+- Filter specific classes:
+  classes = None  # Set to a list like ["person", "car"] to only detect these classes
+
+- Adjust visualization parameters:
+  box_thickness = 2
+  text_thickness = 2
+
+
+------------------------------------------
+2. VIDEO PROCESSING (yolo11-video.py)
+------------------------------------------
+
+Basic object detection:
+```python
+python yolo11-video.py --input video/your_video.mp4 --output runs/output.mp4
+```
+
+Pose estimation:
+```python
+python yolo11-video.py --input video/your_video.mp4 --output runs/pose_output.mp4 --model yolo11n-pose.pt --task pose
+```
+
+Custom confidence threshold:
+```python
+python yolo11-video.py --input video/your_video.mp4 --output runs/output.mp4 --conf 0.7
+```
+
+Filter specific classes:
+```python
+python yolo11-video.py --input video/your_video.mp4 --output runs/output.mp4 --classes person car
+```
+
+Segmentation (with segmentation model):
+```python
+python yolo11-video.py --input video/your_video.mp4 --output runs/seg_output.mp4 --model yolo11n-seg.pt --task segment
+```
+
+All available parameters:
+```python
+python yolo11-video.py --help
+```
+
+Output:
+```
+usage: yolo11-video.py [-h] [--input INPUT] [--output OUTPUT] [--model MODEL] [--task {detect,segment,pose}] [--conf CONF] [--classes CLASSES [CLASSES ...]]
+
+YOLO Video Processing
+
+options:
+  -h, --help            show this help message and exit
+  --input INPUT         Path to input video file
+  --output OUTPUT       Path to output video file
+  --model MODEL         YOLO model name (e.g., yolo11n.pt, yolo11m.pt, yolo11n-pose.pt)
+  --task {detect,segment,pose}
+                        Task type: detect, segment, or pose
+  --conf CONF           Confidence threshold for detections
+  --classes CLASSES [CLASSES ...]
+                        Filter for specific classes (e.g., person car)
+```
+
+------------------------------------------
+3. MODEL TRAINING (yolo11-train.py)
+------------------------------------------
+
+Basic training with default settings:
+```python
+python yolo11-train.py
+```
+
+The training script uses parameters defined within the script. You can modify these parameters:
+
+- Change the model:
+  model_name = "yolo11n.pt"  # Options: yolo11n.pt, yolo11s.pt, yolo11m.pt, yolo11l.pt, yolo11x.pt
+
+- Dataset configuration:
+  data = "coco128.yaml"  # Path to dataset YAML file
+
+- Training parameters:
+  epochs = 100
+  imgsz = 640
+  batch = 16
+  device = 0  # GPU device ID (0 for first GPU, -1 for CPU)
+
+- Save directory:
+  project = "runs/train"
+  name = "exp"  # Experiment name
+
+Example with custom dataset:
+```python
+# Edit the script to use your custom dataset
+# data = "path/to/your/dataset.yaml"
+python yolo11-train.py
+```
+
+------------------------------------------
+4. MODEL DOWNLOADING (download_yolo_model.py)
+------------------------------------------
+
+List available models:
+```python
+python download_yolo_model.py --list
+```
+
+Download a specific model:
+```python
+python download_yolo_model.py --model yolo11n.pt
+```
+
+Download multiple models:
+```python
+python download_yolo_model.py --model yolo11n.pt yolo11n-pose.pt
+```
+
+Force re-download of a model:
+```python
+python download_yolo_model.py --model yolo11n.pt --force
+```
+
+------------------------------------------
+5. COMMON WORKFLOWS
+------------------------------------------
+
+Object detection workflow:
+```python
+# 1. Download the model
+python download_yolo_model.py --model yolo11m.pt
+
+# 2. Run detection on a video
+python yolo11-video.py --input video/your_video.mp4 --output runs/output.mp4 --model yolo11m.pt
+```
+
+Pose estimation workflow:
+```python
+# 1. Download the pose model
+python download_yolo_model.py --model yolo11n-pose.pt
+
+# 2. Run pose estimation on a video
+python yolo11-video.py --input video/your_video.mp4 --output runs/pose_output.mp4 --model yolo11n-pose.pt --task pose
+```
+
+Training and evaluation workflow:
+```python
+# 1. Download a base model for fine-tuning
+python download_yolo_model.py --model yolo11n.pt
+
+# 2. Train on your dataset (edit script to point to your dataset)
+python yolo11-train.py
+
+# 3. Test your trained model on a video
+python yolo11-video.py --input video/test.mp4 --output runs/test_output.mp4 --model runs/train/exp/weights/best.pt

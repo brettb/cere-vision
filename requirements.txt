@@ -1,0 +1,17 @@
+# Core dependencies for YOLO object detection
+opencv-python>=4.9.0.80
+ultralytics>=8.1.27
+numpy>=1.26.4
+pandas>=2.1.4
+matplotlib>=3.8.2
+seaborn>=0.13.0
+scikit-learn>=1.4.0
+torch>=2.5.1
+torchvision>=0.20.1
+
+# Optional dependencies for enhanced functionality
+# Uncomment if needed
+# tensorboard>=2.15.1  # for visualization during training
+# pillow>=10.1.0      # for image processing
+# pyyaml>=6.0.1       # for configuration files
+# tqdm>=4.66.1        # for progress bars
