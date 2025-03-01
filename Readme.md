@@ -1,6 +1,6 @@
-# Cere Vision: YOLO-based Computer Vision Toolkit
+# Cere Vision: YOLO-11-based Computer Vision 101
 
-A comprehensive toolkit for computer vision tasks using YOLO (You Only Look Once) models, including object detection, pose estimation, segmentation, and more.
+A comprehensive toolkit for computer vision tasks using YOLO 11 (You Only Look Once) models, including object detection, pose estimation, segmentation, and more.
 
 ## Features
 - **Object Detection**: Detect and classify objects in images and videos
