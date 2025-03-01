@@ -4,7 +4,7 @@ import random
 import os
 import sys
 import argparse
-
+import logging
 
 def predict(chosen_model, img, classes=[], conf=0.5, task='detect'):
     """

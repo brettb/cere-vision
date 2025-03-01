@@ -52,7 +52,7 @@ The `yolo11-photo.py` script allows you to perform object detection on images:
 
 ```bash
 # Basic usage with default settings
-python yolo11-photo.py
+python3 yolo11-photo.py
 
 # Adjust parameters in the script:
 # - Change the model (yolo11n.pt, yolo11s.pt, yolo11m.pt, yolo11l.pt, yolo11x.pt)
@@ -67,16 +67,16 @@ The `yolo11-video.py` script processes videos with object detection or pose esti
 
 ```bash
 # Basic object detection with default settings
-python yolo11-video.py --input video/your_video.mp4 --output runs/output.mp4
+python3 yolo11-video.py --input video/your_video.mp4 --output runs/output.mp4
 
 # Pose estimation
-python yolo11-video.py --input video/your_video.mp4 --output runs/pose_output.mp4 --model yolo11n-pose.pt --task pose
+python3 yolo11-video.py --input video/your_video.mp4 --output runs/pose_output.mp4 --model yolo11n-pose.pt --task pose
 
 # With custom confidence threshold
-python yolo11-video.py --input video/your_video.mp4 --output runs/output.mp4 --conf 0.7
+python3 yolo11-video.py --input video/your_video.mp4 --output runs/output.mp4 --conf 0.7
 
 # To detect only specific classes
-python yolo11-video.py --input video/your_video.mp4 --output runs/output.mp4 --classes person car
+python3 yolo11-video.py --input video/your_video.mp4 --output runs/output.mp4 --classes person car
 ```
 
 ### Training
@@ -85,7 +85,7 @@ The `yolo11-train.py` script allows you to train YOLO models on custom datasets:
 
 ```bash
 # Basic usage with default settings
-python yolo11-train.py
+python3 yolo11-train.py
 
 # The script includes parameters you can modify:
 # - Model selection (nano, small, medium, large, extra-large)
